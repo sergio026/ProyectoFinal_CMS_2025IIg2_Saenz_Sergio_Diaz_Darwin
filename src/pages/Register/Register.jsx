@@ -15,7 +15,6 @@ const Register = () => {
     // Aquí va tu lógica para registrar (guardar datos, API, etc.)
     console.log("Usuario registrado:", user, pass);
 
-    // ✅ Después de crear la cuenta, vuelve al Login
     navigate("/");
   };
 
@@ -26,29 +25,31 @@ const Register = () => {
 
         <form className="p-0 w-100" onSubmit={handleRegister}>
           <div className="mb-3">
-            <label htmlFor="usuario" className="form-label">Usuario</label>
+            <label htmlFor="usuario" className="form-label">Correo</label>
             <input
               type="text"
-              className="form-control"
-              id="usuario"
-              placeholder="Ingrese su usuario"
+              className="email"
+              id="email"
+              placeholder="Ingrese su email"
               value={user}
               onChange={(e) => setUser(e.target.value)}
               required
             />
+            <i className="bx bxs-envelope"></i>
           </div>
 
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Contraseña</label>
             <input
               type="password"
-              className="form-control"
+              className="password"
               id="password"
               placeholder="Ingrese su contraseña"
               value={pass}
               onChange={(e) => setPass(e.target.value)}
               required
             />
+            <i className="bx bxs-lock-alt"></i>
           </div>
 
           <button type="submit" className="btn-login">
