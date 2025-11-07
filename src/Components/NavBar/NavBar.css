@@ -1,0 +1,56 @@
+.navbar {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  animation: gradientMove 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+.navbar-brand img:hover {
+  transform: scale(1.1);
+}
+
+.nav-link {
+  color: white !important;
+  font-weight: 500;
+  margin-right: 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.nav-link:hover {
+  color: #ffe259 !important;
+  transform: translateY(-2px);
+}
+
+.btn {
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn-outline-primary {
+  border: 2px solid white;
+  color: white;
+}
+.btn-outline-primary:hover {
+  background: white;
+  color: #2575fc;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  border: none;
+}
+.btn-primary:hover {
+  background: linear-gradient(90deg, #ee0979, #ff6a00);
+  transform: scale(1.05);
+}
+
+.btn-dark i {
+  font-size: 1.2rem;
+}

@@ -1,14 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-/* body {
-    background: linear-gradient(135deg, #47494d, #414447);
+#login {
+    /* background: linear-gradient(135deg, #47494d, #414447); */
     font-family: "Poppins", sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-} */
+    height: 100vh;
+    width: 40%;
+}
 
 /*Tarjeta principal */
 .card {
@@ -22,7 +19,7 @@
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 15px 140px rgba(0, 0, 0, 0.35);
 }
 
 /*Título */
