@@ -1,153 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 body {
-    background: linear-gradient(135deg, #dbeafe, #f1f5f9);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px; 
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
-
+/* 🌟 Tarjeta principal */
 .card {
-    border: none;
-    border-radius: 20px;
-    padding: 25px;
-    background-color: #0e1c36;
-    max-width: 420px;
-    width: 100%;
-    color: white;   
-    text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  width: 350px;
 }
 
-.card h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
 }
 
-.container-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* ✨ Título */
+h2 {
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-.container-img img {
-    width: 40%;
-    max-width: 180px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 16px;
-    border: 4px solid #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,.3);
+/* 💌 Etiquetas */
+label {
+  color: #fff;
+  font-weight: 500;
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
 }
 
-.container-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 25px;
+/* 📥 Campos de entrada */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 0 2px transparent;
 }
 
-.container-form label {
-    color: #fff;
-    font-weight: bold;
-    text-align: left;
+input:focus {
+  background: #fff;
+  box-shadow: inset 0 0 0 2px #6a11cb;
+  transform: scale(1.02);
 }
 
-.container-form input {
-    width: 100%;
-    height: 45px;
-    border-radius: 12px;
-    border: 1px solid #d1d5db;
-    padding: 5px;
-    margin-bottom: 15px;
-    background-color: #f9fafb;
-    transition: 0.3s;
+/* 🔒 Iconos */
+i {
+  position: absolute;
+  margin-left: -30px;
+  margin-top: 14px;
+  color: #6a11cb;
 }
 
-/* Efecto focus */
-.container-form input:focus {
-    border-color: #386fd4;
-    box-shadow: 0 0 0 3px rgba(56, 111, 212, 0.2);
-    outline: none;
+/* 🚀 Botón principal */
+.btn-login {
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 10px rgba(238, 9, 121, 0.4);
 }
 
-/* ================================
-   BOTÓN LOGIN
-================================ */
-.btn-login,
-.btn-color {
-    width: 100%;
-    height: 45px;
-    border-radius: 12px;
-    background-color: #386fd4;
-    color: white;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: 0.3s;
-    border: none;
+.btn-login:hover {
+  background: linear-gradient(90deg, #ee0979, #ff6a00);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 106, 0, 0.5);
 }
 
-.btn-login:hover,
-.btn-color:hover {
-    background-color: #2f5cbd;
+/* ⚡ Animación de entrada */
+.card {
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* ================================
-   LINKS
-================================ */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🩵 Texto secundario */
+.text-muted {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.9rem;
+}
+
 .text-color {
-    color: #ffffff;
-    font-weight: 600;
+  color: #ffe259;
+  font-weight: 600;
 }
 
+/* 🌈 Enlace de registro */
 a {
-    color: #5fa8ff;
-    font-weight: 600;
-    transition: 0.3s;
+  color: #00e0ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
+
 a:hover {
-    text-decoration: underline;
+  color: #fff;
+  text-shadow: 0 0 8px #00e0ff;
 }
 
-/* ================================
-   RESPONSIVE DESIGN
-================================ */
-
-/* Tablets */
-@media (max-width: 768px) {
-    .card {
-        padding: 20px;
-    }
-
-    .container-img img {
-        width: 70%;
-    }
+/* 🔔 Mensaje de error */
+.error-message {
+  font-size: 0.95rem;
+  background: rgba(255, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 8px;
+  color: #ff4e4e;
+  animation: shake 0.4s ease-in-out;
 }
 
-/* Teléfonos */
-@media (max-width: 480px) {
-    .card {
-        padding: 15px;
-        border-radius: 15px;
-    }
-
-    .card h2 {
-        font-size: 1.5rem;
-    }
-
-    .container-img img {
-        width: 80%;
-    }
-
-    .container-form input {
-        height: 42px;
-        font-size: 0.9rem;
-    }
-
-    .btn-login,
-    .btn-color {
-        height: 42px;
-        font-size: 0.95rem;
-    }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
