@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <nav>
-    <ul>
-        <li><Link to="/inicio">Inicio</Link></li>
-        <li><Link to="/dato1">Dato 1</Link></li>
-        <li><Link to="/dato2">Dato 2</Link></li>
-    </ul>
-</nav>
-  )
+    <nav className="navbar">
+      <div className="navbar-logo">📰 Noticias 360</div>
+      <ul className="navbar-links">
+        <li><Link to="/">Inicio</Link></li>
+        <li><Link to="/politica">Política</Link></li>
+        <li><Link to="/tecnologia">Tecnología</Link></li>
+        <li><Link to="/deportes">Deportes</Link></li>
+        <li><Link to="/loguin">Iniciar sesión</Link></li>
+      </ul>
+    </nav>
+  );
 }
 
 export default Navbar

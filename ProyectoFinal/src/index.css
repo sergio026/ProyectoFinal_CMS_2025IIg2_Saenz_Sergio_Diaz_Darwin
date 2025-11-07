@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('Imagenes/fondo.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #000;
+}
+    
