@@ -2,12 +2,11 @@
 
 #registrar {
     font-family: "Poppins", sans-serif;
-    /* height: 100vh; */
     width: 40%;
 }
 
-/*Tarjeta principal */
-.card {
+
+.registrar .card {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -16,20 +15,20 @@
     width: 350px;
 }
 
-.card:hover {
+.registrar .card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
 }
 
-/*Título */
-h2 {
+
+.registrar h2 {
     font-size: 2rem;
     color: #fff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/*Etiquetas */
-label {
+
+.registrar label {
     color: #3f3f3f;
     font-weight: 500;
     display: block;
@@ -37,8 +36,7 @@ label {
     margin-bottom: 5px;
 }
 
-/*Campos de entrada */
-input {
+.registrar input {
     width: 100%;
     padding: 12px 15px;
     border-radius: 10px;
@@ -48,24 +46,26 @@ input {
     font-size: 1rem;
     transition: all 0.3s ease;
     box-shadow: inset 0 0 0 2px transparent;
+    font-size: 0.5rem;
+    
 }
 
-input:focus {
+.registrar input:focus {
     background: #141414;
     box-shadow: inset 0 0 0 2px #0400ff;
     transform: scale(1.02);
 }
 
-/*Iconos */
-i {
+
+.registrar i {
     position: absolute;
     margin-left: -30px;
     margin-top: 14px;
     color: #0044ff;
 }
 
-/* Botón principal */
-.btn-login {
+
+.registrar .btn-login {
     background: linear-gradient(90deg, #ff6a00, #ee0979);
     color: white;
     border: none;
@@ -80,14 +80,13 @@ i {
     box-shadow: 0 4px 10px rgba(238, 9, 121, 0.4);
 }
 
-.btn-login:hover {
+.registrar .btn-login:hover {
     background: linear-gradient(90deg, #ee0979, #ff6a00);
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(255, 106, 0, 0.5);
 }
 
-/* Animación de entrada */
-.card {
+.registrar .card {
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -103,32 +102,30 @@ i {
     }
 }
 
-/*Texto secundario */
-.text-muted {
+
+.registrar .text-muted {
     color: rgba(255, 255, 255, 0.8) !important;
     font-size: 0.9rem;
 }
 
-.text-color {
+.registrar .text-color {
     color: #000000;
     font-weight: 600;
 }
 
-/* Enlace de registro */
-a {
+.registrar a {
     color: #ff0000;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-a:hover {
+.registrar a:hover {
     color: #fff;
     text-shadow: 0 0 8px #00e0ff;
 }
 
-/*Mensaje de error */
-.error-message {
+.registrar .error-message {
     font-size: 0.95rem;
     background: rgba(255, 0, 0, 0.15);
     border-radius: 10px;
@@ -152,3 +149,39 @@ a:hover {
         transform: translateX(5px);
     }
 }
+
+
+
+@media (max-width: 576px) {
+  #registrar {
+    width: 100%;
+  }
+
+  .registrar .card {
+    width: 100%;
+  }
+
+  .registrar input {
+    font-size: 0.7rem;
+    padding: 10px 12px;
+  }
+
+  .registrar .btn-login {
+    font-size: rem;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 1024px) {
+  #registrar {
+    width: 80%;
+  }
+
+  .registrar .card {
+    width: 100%;
+  }
+
+  .registrar input {
+    font-size: 1rem;
+  }
+}
+

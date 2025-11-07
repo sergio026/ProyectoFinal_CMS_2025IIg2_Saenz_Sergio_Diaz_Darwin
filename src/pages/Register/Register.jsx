@@ -19,7 +19,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-vh-100 d-flex justify-content-center align-items-center py-5" id="registrar">
+    <div className="registrar min-vh-100 d-flex justify-content-center align-items-center py-5" id="registrar">
       <div className="card shadow-lg border-0 rounded-4 p-4 text-center w-100">
         <h2 className="fw-bold mb-3 text-primary">Crear cuenta</h2>
 

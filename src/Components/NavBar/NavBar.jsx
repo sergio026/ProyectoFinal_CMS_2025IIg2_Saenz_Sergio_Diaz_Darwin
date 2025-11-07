@@ -1,44 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./NavBar.css";
 
 const NavBar = () => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-      <div className="container">
-        {/* Logo */}
-        <Link className="navbar-brand me-2 d-flex align-items-center" to="/">
-          <img
+const [isOpen, setIsOpen] = useState(false);
+
+const toggleMenu = () => setIsOpen(!isOpen);
+const closeMenu = () => setIsOpen(false);
+
+return (
+    <nav className="navbar navbar-expand-lg custom-navbar shadow-sm">
+    <div className="container">
+        <Link
+        className="navbar-brand d-flex align-items-center"
+        to="/header"
+        onClick={closeMenu}>
+        <img
             src="logoCMS.webp"
-            height="30"
-            alt="Logo"
-            loading="lazy"
-            style={{ marginTop: "-2px" }}
-          />
+            className="navbar-logo"
+            alt="Logo CMS"
+            loading="lazy"/>
         </Link>
 
-        {/* Contenido colapsable */}
-        <div className="collapse navbar-collapse" id="navbarMenu">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/dashboard">
-                Publcidad CMS
-              </Link>
-            </li>
-          </ul>
+        <button
+        className={`navbar-toggler ${isOpen ? "open" : ""}`}
+        type="button"
+        onClick={toggleMenu}>
+        <span className="navbar-toggler-icon"></span>
+        </button>
 
-          {/* Botones a la derecha */}
-          <div className="d-flex align-items-center gap-2">
-            <Link to="/header" className="btn btn-outline-primary px-3">
-              Inicio
+        <div
+        className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
+        id="navbarMenu">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+            <li className="nav-item">
+            <Link className="nav-link" to="/header" onClick={closeMenu}>
+                Publicidad CMS
             </Link>
-              <Link to="/login" className="btn btn-outline-primary px-3">
-               Inicio de sesion
+            </li>
+        </ul>
+
+        <div className="d-flex align-items-center gap-2 justify-content-center flex-column flex-lg-row">
+            <Link
+            to="/header"
+            className="btn btn-outline-primary custom-btn"
+            onClick={closeMenu}>
+            Inicio
             </Link>
-          </div>
+            <Link
+            to="/login"
+            className="btn btn-outline-primary custom-btn"
+            onClick={closeMenu}>
+            Iniciar Sesión
+            </Link>
         </div>
-      </div>
+        </div>
+    </div>
     </nav>
-  );
+);
 };
 
 export default NavBar;

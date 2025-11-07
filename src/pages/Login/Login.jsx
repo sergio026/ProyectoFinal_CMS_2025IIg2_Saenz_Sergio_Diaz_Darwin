@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="min-vh-100 d-flex justify-content-center align-items-center py-5" id="login">
+    <div className="login min-vh-100 d-flex justify-content-center align-items-center py-5" id="login">
       <div className="card shadow-lg border-0 rounded-4 p-4 text-center w-100">
         <h2 className="fw-bold mb-3 text-primary">Bienvenido</h2>
         <div
