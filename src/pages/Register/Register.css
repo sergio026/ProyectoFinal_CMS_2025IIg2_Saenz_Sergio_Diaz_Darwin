@@ -43,17 +43,16 @@
     border: none;
     outline: none;
     background: rgba(214, 224, 255, 0.85);
-    font-size: 1rem;
     transition: all 0.3s ease;
     box-shadow: inset 0 0 0 2px transparent;
-    font-size: 0.5rem;
-    
+    font-size: 1rem;
 }
 
 .registrar input:focus {
     background: #141414;
     box-shadow: inset 0 0 0 2px #0400ff;
     transform: scale(1.02);
+    color: white;
 }
 
 
@@ -152,36 +151,35 @@
 
 
 
-@media (max-width: 576px) {
-  #registrar {
-    width: 100%;
-  }
+/* @media (max-width: 576px) {
+    #registrar {
+        width: 100%;
+    }
 
-  .registrar .card {
-    width: 100%;
-  }
+    .registrar .card {
+        width: 100%;
+    }
 
-  .registrar input {
-    font-size: 0.7rem;
-    padding: 10px 12px;
-  }
+    .registrar input {
+        font-size: 0.7rem;
+        padding: 10px 12px;
+    }
 
-  .registrar .btn-login {
-    font-size: rem;
-  }
+    .registrar .btn-login {
+        font-size: rem;
+    }
 }
 
 @media (min-width: 577px) and (max-width: 1024px) {
-  #registrar {
-    width: 80%;
-  }
+    #registrar {
+        width: 80%;
+    }
 
-  .registrar .card {
-    width: 100%;
-  }
+    .registrar .card {
+        width: 100%;
+    }
 
-  .registrar input {
-    font-size: 1rem;
-  }
-}
-
+    .registrar input {
+        font-size: 1rem;
+    }
+} */
