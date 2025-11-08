@@ -51,6 +51,14 @@ const Register = () => {
             />
             <i className="bx bxs-lock-alt"></i>
           </div>
+          <div className="mb-3">
+            <label htmlFor="select" className="form-label">Rol</label>
+            <select className="form-select" id="select">
+              <option value="">Seleccione un Rol</option>
+              <option value="admin">Administrador</option>
+              <option value="user">Usuario</option>
+            </select>
+          </div>
 
           <button type="submit" className="btn-login">
             Crear cuenta
