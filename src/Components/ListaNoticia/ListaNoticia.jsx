@@ -29,14 +29,14 @@
 
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebaseConfig"; 
+import { db } from "../../firebaseConfig";
 import "./ListaNoticia.css";
 
 const ListaNoticia = () => {
-const [noticias, setNoticias] = useState([]);
-const [loading, setLoading] = useState(true);
+  const [noticias, setNoticias] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-useEffect(() => {
+  useEffect(() => {
     const fetchNoticias = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "Noticia"));
@@ -44,6 +44,7 @@ useEffect(() => {
           id: doc.id,
           ...doc.data(),
         }));
+        console.log("Noticias cargadas desde Firestore:", noticiasArray);
         setNoticias(noticiasArray);
       } catch (error) {
         console.error("Error al obtener las noticias:", error);
@@ -65,8 +66,12 @@ useEffect(() => {
         {noticias.map((noticia) => (
           <div key={noticia.id} className="noticia-card">
             <h3>{noticia.titulo}</h3>
-            <p><strong>Categoría:</strong> {noticia.categoria}</p>
-            <p><strong>Autor:</strong> {noticia.autor}</p>
+            <p>
+              <strong>Categoría:</strong> {noticia.categoria}
+            </p>
+            <p>
+              <strong>Autor:</strong> {noticia.autor}
+            </p>
             <p>{noticia.contenido}</p>
             <small>
               Estado: {noticia.estado} | Fecha:{" "}
