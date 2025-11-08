@@ -7,8 +7,9 @@ html, body, #root, .App {
 
 .App {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  /* flex-direction: column; */
+  height: auto;
+  width: 100%;
 }
 
 

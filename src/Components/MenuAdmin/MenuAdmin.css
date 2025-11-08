@@ -25,15 +25,26 @@
   color: #00d1ff;
 }
 
+.admin-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  gap: 1.5rem;
+}
 .admin-nav-links {
   list-style: none;
   display: flex;
+  align-items: center;
   gap: 1.2rem;
+  margin-bottom: auto;
 }
 
-.admin-nav-links li {
+/* .admin-nav-links li {
   display: inline-block;
-}
+  cursor: pointer;
+} */
 
 .admin-nav-links a {
   color: #fff;
@@ -88,7 +99,7 @@
   transform: translateY(4px);
 }
 
-/* Para pantallas pequeñas */
+
 @media (max-width: 768px) {
   .admin-nav-links {
     position: absolute;

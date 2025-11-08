@@ -72,7 +72,7 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
 
     if (user === "admin" && password === "1234") {
-      onLogin(); // 🔹 Activa el cambio en App.jsx
+      onLogin();
     } else {
       alert("Usuario o contraseña incorrectos");
     }
