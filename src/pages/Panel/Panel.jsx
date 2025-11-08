@@ -59,7 +59,7 @@ import { Link } from "react-router-dom";
 // import NoticiaForm from "../../Components/Noticia/NoticiaForm";
 // import NoticiaList from "../../Components/Noticia/NoticiaList";
 
-import NoticiaForm from "../../Components/ListaNoticia/ListaNoticia";
+import ListaNoticia from "../../Components/ListaNoticia/ListaNoticia";
 import NoticiaList from "../../Components/Noticia/Noticia";
 import "./Panel.css";
 
@@ -77,10 +77,9 @@ const Panel = () => {
         Bienvenido, administra el contenido del sitio desde aquí 🚀
       </p>
 
-      {/* Aquí puedes mostrar el formulario y la lista */}
-      <div className="panel-content">
-        <NoticiaForm onSave={handleSaveNoticia} />
-        <NoticiaList noticias={noticias} />
+      {/* Sección de noticias */}
+      <div className="panel-section">
+        <ListaNoticia />
       </div>
 
       {/* Tarjetas de navegación */}
