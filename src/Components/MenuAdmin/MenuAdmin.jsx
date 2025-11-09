@@ -8,7 +8,7 @@ const MenuAdmin = ({ onLogout }) => {
   return (
     <nav className="admin-navbar">
       <div className="admin-navbar-container">
-        <Link to="/dashboard" className="admin-logo">
+        <Link to="/panel" className="admin-logo">
           CMS<span>Panel</span>
         </Link>
 
@@ -23,22 +23,22 @@ const MenuAdmin = ({ onLogout }) => {
         
           <ul className={`admin-nav-links ${menuOpen ? "active" : ""}`}>
             <li>
-              <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+              <Link to="/panel" onClick={() => setMenuOpen(false)}>
                 🏠 Inicio
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/noticias" onClick={() => setMenuOpen(false)}>
+              <Link to="/panel/noticias" onClick={() => setMenuOpen(false)}>
                 📰 Noticias
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/usuarios" onClick={() => setMenuOpen(false)}>
+              <Link to="/panel/usuarios" onClick={() => setMenuOpen(false)}>
                 👥 Usuarios
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/config" onClick={() => setMenuOpen(false)}>
+              <Link to="/panel/config" onClick={() => setMenuOpen(false)}>
                 ⚙️ Configuración
               </Link>
             </li>

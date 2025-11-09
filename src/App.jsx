@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -8,6 +7,8 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Dashboard from "./pages/Panel/Panel";
 import Home from "./Components/Header/Header";
+import Noticia from "./Components/Noticia/Noticia";
+import Noticias from "./pages/Noticias/Noticias";
 import "./index.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import firebaseApp from "./firebase/credenciales";
@@ -35,25 +36,20 @@ function App() {
       <main className="App">
         <Routes>
           <Route path="/header" element={<Home />} />
-
-
           <Route
             path="/login"
             element={
               isLoggedIn ? (
-                <Navigate to="/dashboard" />
+                <Navigate to="/panel" />
               ) : (
                 <Login onLogin={handleLogin} />
               )
             }
           />
           <Route path="/registrar" element={<Register />} />
-          <Route
-            path="/dashboard"
-            element={
-              isLoggedIn ? <Dashboard /> : <Navigate to="/login" />
-            }
-          />
+          <Route path="/panel"  element={ isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}/>
+          {/* <Route path="/panel/noticias" element={<Noticia />} /> */}
+          <Route path="/panel/noticias" element={<Noticias />} />
         </Routes>
       </main>
     </>
