@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-
 import "./Noticia.css";
 import { db } from "../../firebase/credenciales";
-import { collection, addDoc, serverTimestamp, updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  updateDoc,
+  doc,
+  getDocs,
+} from "firebase/firestore";
 
 const Noticia = ({ user, noticiaExistente }) => {
   const [noticia, setNoticia] = useState({
@@ -10,13 +16,33 @@ const Noticia = ({ user, noticiaExistente }) => {
     subtitulo: "",
     contenido: "",
     categoria: "",
+    seccionId: "",
+    seccionNombre: "",
     imagenURL: "",
     autor: user?.email || "Sin Autor",
     estado: "Edición",
   });
 
-  useEffect(() => {
+  const [secciones, setSecciones] = useState([]);
 
+  useEffect(() => {
+    const obtenerSecciones = async () => {
+      try {
+        const seccionesSnapshot = await getDocs(collection(db, "Secciones"));
+        const lista = seccionesSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setSecciones(lista);
+      } catch (error) {
+        console.error("Error al obtener secciones:", error);
+      }
+    };
+
+    obtenerSecciones();
+  }, []);
+
+  useEffect(() => {
     if (noticiaExistente) {
       setNoticia({ ...noticiaExistente });
     }
@@ -26,6 +52,7 @@ const Noticia = ({ user, noticiaExistente }) => {
     }
   }, [user, noticiaExistente]);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -33,7 +60,16 @@ const Noticia = ({ user, noticiaExistente }) => {
       return;
     }
 
-    setNoticia({ ...noticia, [name]: value });
+    if (name === "seccionId") {
+      const seccionSeleccionada = secciones.find((s) => s.id === value);
+      setNoticia({
+        ...noticia,
+        seccionId: value,
+        seccionNombre: seccionSeleccionada ? seccionSeleccionada.nombre : "",
+      });
+    } else {
+      setNoticia({ ...noticia, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -50,7 +86,7 @@ const Noticia = ({ user, noticiaExistente }) => {
         await addDoc(collection(db, "Noticia"), {
           ...noticia,
           fechaCreacion: serverTimestamp(),
-          rolCreador: user.rol, 
+          rolCreador: user.rol,
         });
       }
 
@@ -59,6 +95,8 @@ const Noticia = ({ user, noticiaExistente }) => {
         subtitulo: "",
         contenido: "",
         categoria: "",
+        seccionId: "",
+        seccionNombre: "",
         imagenURL: "",
         autor: user.email,
         estado: "Edición",
@@ -67,32 +105,6 @@ const Noticia = ({ user, noticiaExistente }) => {
       console.error("Error al guardar la noticia:", error);
     }
   };
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setNoticia({ ...noticia, [name]: value });
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     await addDoc(collection(db, "Noticia"), {
-  //       ...noticia, 
-  //       fechaCreacion: serverTimestamp(),
-  //     });
-  //     setNoticia({
-  //       titulo: "",
-  //       subtitulo: "",
-  //       contenido: "",
-  //       categoria: "",
-  //       imagenURL: "",
-  //       autor: "",
-  //       estado: "",
-  //     });
-  //   } catch (error) {
-  //     console.error("Error al guardar la noticia:", error);
-  //   }
-  // };
 
   return (
     <form className="noticia-form" onSubmit={handleSubmit}>
@@ -124,16 +136,17 @@ const Noticia = ({ user, noticiaExistente }) => {
       />
 
       <select
-        name="categoria"
-        value={noticia.categoria}
+        name="seccionId"
+        value={noticia.seccionId}
         onChange={handleChange}
         required
       >
-        <option value="">Seleccionar categoría</option>
-        <option value="Tecnología">Tecnología</option>
-        <option value="Política">Política</option>
-        <option value="Deportes">Deportes</option>
-        <option value="Economía">Economía</option>
+        <option value="">Seleccionar sección</option>
+        {secciones.map((sec) => (
+          <option key={sec.id} value={sec.id}>
+            {sec.nombre}
+          </option>
+        ))}
       </select>
 
       <input
@@ -150,7 +163,6 @@ const Noticia = ({ user, noticiaExistente }) => {
         name="autor"
         placeholder="Autor"
         value={noticia.autor}
-        // onChange={handleChange}
         readOnly
       />
 

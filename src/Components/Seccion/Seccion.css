@@ -1,0 +1,84 @@
+.secciones {
+  background-color: #2c2c3e;
+  border: 1px solid #3a3a4d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.1);
+}
+
+.secciones .seccion-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.secciones .seccion-form label {
+  font-weight: bold;
+  color: #00bfff;
+  margin-bottom: 0.3rem;
+}
+
+.secciones .seccion-form input,
+.secciones .seccion-form textarea {
+  background-color: #1e1e2f;
+  color: #ffffff;
+  border: 2px solid #3a3a4d;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.secciones .seccion-form input:focus,
+.seccion-form textarea:focus {
+  outline: none;
+  border-color: #00bfff;
+  box-shadow: 0 0 6px #00bfff60;
+}
+
+.secciones .seccion-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+
+.secciones .seccion-form button {
+  background-color: #00bfff;
+  color: #1e1e2f;
+  font-weight: bold;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.secciones .seccion-form button:hover {
+  background-color: #0093cc;
+  transform: translateY(-2px);
+}
+
+.secciones .seccion-form button[type="button"] {
+  background-color: #44445c;
+  color: #fff;
+}
+
+.secciones .seccion-form button[type="button"]:hover {
+  background-color: #55556e;
+}
+
+.secciones .seccion-form div {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .secciones .seccion-form div {
+    flex-direction: column;
+  }
+  .secciones .seccion-form button {
+    width: 100%;
+  }
+}

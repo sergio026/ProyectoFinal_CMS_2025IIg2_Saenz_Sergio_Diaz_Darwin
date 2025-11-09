@@ -1,0 +1,118 @@
+
+.secciones-panel {
+  background-color: #2c2c3e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.1);
+  margin-top: 1rem;
+}
+
+.secciones-panel h3 {
+  color: #00bfff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  border-bottom: 2px solid #00bfff33;
+  padding-bottom: 0.5rem;
+}
+
+.secciones-panel button {
+  background-color: #00bfff;
+  color: #1e1e2f;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.secciones-panel button:hover {
+  background-color: #0093cc;
+  transform: translateY(-2px);
+}
+
+.secciones-panel ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.secciones-panel li {
+  background-color: #1e1e2f;
+  border: 1px solid #3a3a4d;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.secciones-panel li:hover {
+  background-color: #24243b;
+  transform: translateY(-1px);
+}
+
+.secciones-panel li div:first-child {
+  max-width: 70%;
+}
+
+.secciones-panel li strong {
+  font-size: 1.1rem;
+  color: #00bfff;
+}
+
+.secciones-panel li div > div {
+  color: #cfd3dc;
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.secciones-panel li button {
+  margin: 10;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.secciones-panel li button:first-child {
+  background-color: #22c55e;
+  color: #fff;
+}
+
+.secciones-panel li button:first-child:hover {
+  background-color: #16a34a;
+}
+
+.secciones-panel li button:last-child {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.secciones-panel li button:last-child:hover {
+  background-color: #dc2626;
+}
+
+
+@media (max-width: 700px) {
+  .secciones-panel li {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .secciones-panel li div:last-child {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .secciones-panel button {
+    width: 100%;
+  }
+}

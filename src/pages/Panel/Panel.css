@@ -60,14 +60,14 @@
 }
 
 
-.panel-contenido {
+.panel .panel-contenido {
   flex: 1;
   padding: 2rem;
   background-color: #1e1e2f;
   overflow-y: auto;
 }
 
-.panel-contenido input,
+.panel .panel-contenido input,
 .panel-contenido textarea,
 .panel-contenido select,
 .panel-contenido button {
@@ -79,21 +79,21 @@
   font-size: 1rem;
 }
 
-.panel-contenido input,
+.panel .panel-contenido input,
 .panel-contenido textarea,
 .panel-contenido select {
   background-color: #2c2c3e;
   color: #fff;
 }
 
-.panel-contenido button {
+.panel .panel-contenido button {
   background-color: #00bfff;
   color: #1e1e2f;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-.panel-contenido button:hover {
+.panel .panel-contenido button:hover {
   background-color: #0093cc;
 }
 
@@ -102,7 +102,7 @@
     flex-direction: column;
   }
 
-  .menu-vertical {
+  .panel .menu-vertical {
     width: 100%;
     flex-direction: row;
     overflow-x: auto;
