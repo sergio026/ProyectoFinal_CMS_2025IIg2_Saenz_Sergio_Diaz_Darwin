@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ListaNoticia from "../../Components/ListaNoticia/ListaNoticia";
 import Noticia from "../../Components/Noticia/Noticia";
 import Registrar from "../Register/Register";
