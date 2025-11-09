@@ -1,18 +1,48 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import firebaseApp from "../../firebase/credenciales";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
+const auth = getAuth(firebaseApp);
 
 const Login = ({ onLogin }) => {
-  const [user, setUser] = useState("");
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cargando, setCargando] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setCargando(true);
+    setError("");
 
-    if (user === "admin" && password === "1234") {
-      onLogin();
-    } else {
-      alert("Usuario o contraseña incorrectos");
+    if (!email || !password) {
+      setError("Por favor completa todos los campos");
+      setCargando(false);
+      return;
+    }
+
+    try {
+
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      console.log("Usuario autenticado:", user.uid);
+
+      if (onLogin) {
+        onLogin();
+      }
+
+      navigate("/dashboard");
+
+    } finally {
+      setCargando(false);
     }
   };
 
@@ -23,29 +53,32 @@ const Login = ({ onLogin }) => {
     >
       <div className="card shadow-lg border-0 rounded-4 p-4 text-center w-100">
         <h2 className="fw-bold mb-3 text-primary">Bienvenido</h2>
+        {error && (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        )}
 
         <form className="p-0 w-100" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="formGroupExampleInput" className="form-label">
+            <label htmlFor="email" className="form-label">
               Correo
             </label>
             <input
-              type="text"
+              type="email"
               className="email"
               id="email"
               placeholder="Ingrese su Correo"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={cargando}
             />
             <i className="bx bxs-envelope"></i>
           </div>
 
           <div className="mb-3">
-            <label
-              htmlFor="formGroupExampleInput2"
-              className="form-label text-left"
-            >
+            <label htmlFor="password" className="form-label text-left">
               Contraseña
             </label>
             <input
@@ -55,12 +88,18 @@ const Login = ({ onLogin }) => {
               placeholder="Ingrese su contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+              disabled={cargando}
             />
             <i className="bx bxs-lock-alt"></i>
           </div>
 
-          <button type="submit" className="btn-login">
-            Iniciar Sesión
+          <button
+            type="submit"
+            className="btn-login"
+            disabled={cargando}
+          >
+            {cargando ? "Iniciando sesión..." : "Iniciar Sesión"}
           </button>
 
           <p className="text-center mt-4 text-muted">
