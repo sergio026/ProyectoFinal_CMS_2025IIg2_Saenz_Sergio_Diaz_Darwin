@@ -16,12 +16,11 @@ const Noticia = ({ user, noticiaExistente }) => {
   });
 
   useEffect(() => {
-    // Si es edición, cargar noticia existente
+
     if (noticiaExistente) {
       setNoticia({ ...noticiaExistente });
     }
 
-    // Siempre asignar el autor con el usuario actual
     if (user?.email) {
       setNoticia((prev) => ({ ...prev, autor: user.email }));
     }
@@ -55,7 +54,6 @@ const Noticia = ({ user, noticiaExistente }) => {
         });
       }
 
-      // Limpiar formulario después de guardar
       setNoticia({
         titulo: "",
         subtitulo: "",
