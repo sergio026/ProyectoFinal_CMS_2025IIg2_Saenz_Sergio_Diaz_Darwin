@@ -1,5 +1,5 @@
-.lista-noticia {
-    /* display: flex; */
+/* .lista-noticia {
+    
     background: linear-gradient(180deg, #0b1120, #111827);
     color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -47,4 +47,126 @@
     margin-top: 1rem;
     font-size: 0.85rem;
     opacity: 0.8;
+} */
+
+/* .noticias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+} */
+
+
+.lista-noticia-container {
+  padding: 1rem;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.lista-noticia-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #00d8ff;
+  border-left: 5px solid #00d8ff;
+  padding-left: 0.5rem;
+}
+
+.filtro-autor {
+  margin-bottom: 1rem;
+}
+
+.filtro-autor select {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #111827;
+  color: #fff;
+}
+
+.sin-noticias {
+  color: #ccc;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.noticias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #1f2937; /* gris oscuro */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,216,255,0.3);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  color: #00d8ff;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+}
+
+.btn-editar {
+  background-color: #00d8ff;
+  color: #111827;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-editar:hover {
+  background-color: #00a3cc;
 }

@@ -1,64 +1,178 @@
+// // import React, { useEffect, useState } from "react";
+// // import { db } from "../../firebase/credenciales";
+// // import { collection, getDocs, query, where } from "firebase/firestore";
+
+// // const ListaNoticia = ({ rol, user }) => {
+// //   const [noticias, setNoticias] = useState([]);
+// //   const [reporteros, setReporteros] = useState([]);
+// //   const [filtroAutor, setFiltroAutor] = useState("Todos");
+
+// //   useEffect(() => {
+// //     const fetchNoticias = async () => {
+// //       try {
+// //         const noticiasCollection = collection(db, "Noticia");
+// //         let snapshot;
+
+// //         if (rol === "reportero") {
+// //           const q = query(noticiasCollection, where("autor", "==", user.email));
+// //           snapshot = await getDocs(q);
+// //         } else if (rol === "editor") {
+// //           snapshot = await getDocs(noticiasCollection);
+// //         }
+
+// //         const lista = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+// //         setNoticias(lista);
+
+
+// //         const autores = [...new Set(lista.map((n) => n.autor))];
+// //         setReporteros(autores);
+
+// //       } catch (error) {
+// //         console.error("Error al obtener noticias:", error);
+// //       }
+// //     };
+
+// //     fetchNoticias();
+// //   }, [rol, user]);
+
+
+// //   const noticiasFiltradas =
+// //     rol === "editor" && filtroAutor !== "Todos"
+// //       ? noticias.filter((n) => n.autor === filtroAutor)
+// //       : noticias;
+
+// //   return (
+// //     <div>
+// //       <h3>Lista de Noticias</h3>
+
+// //       {rol === "editor" && (
+// //         <div style={{ marginBottom: "1rem" }}>
+// //           <label>Filtrar por reportero: </label>
+// //           <select
+// //             value={filtroAutor}
+// //             onChange={(e) => setFiltroAutor(e.target.value)}
+// //           >
+// //             <option value="Todos">Todos</option>
+// //             {reporteros.map((r) => (
+// //               <option key={r} value={r}>
+// //                 {r}
+// //               </option>
+// //             ))}
+// //           </select>
+// //         </div>
+// //       )}
+
+// //       {noticiasFiltradas.length === 0 ? (
+// //         <p>No hay noticias para mostrar.</p>
+// //       ) : (
+// //         <ul>
+// //           {noticiasFiltradas.map((n) => (
+// //             <li key={n.id}>
+// //               <strong>{n.titulo}</strong> - {n.estado} <br />
+// //               <small>{n.autor}</small>
+// //               <br />
+// //               <button onClick={() => console.log("Editar:", n)}>Editar</button>
+// //             </li>
+// //           ))}
+// //         </ul>
+// //       )}
+// //     </div>
+// //   );
+// // };
+
+// // export default ListaNoticia;
 // import React, { useEffect, useState } from "react";
 // import { db } from "../../firebase/credenciales";
 // import { collection, getDocs, query, where } from "firebase/firestore";
 
 // const ListaNoticia = ({ rol, user }) => {
 //   const [noticias, setNoticias] = useState([]);
-  
-// useEffect(() => {
-//   const fetchNoticias = async () => {
-//     try {
-//       const noticiasCollection = collection(db, "Noticia");
-//       let snapshot;
+//   const [reporteros, setReporteros] = useState([]);
+//   const [filtroAutor, setFiltroAutor] = useState("Todos");
 
-//       if (rol === "reportero") {
-//         const q = query(noticiasCollection, where("autor", "==", user.email));
-//         snapshot = await getDocs(q);
-//       } else if (rol === "editor") {
-//         snapshot = await getDocs(noticiasCollection); // <- todos
+//   useEffect(() => {
+//     const fetchNoticias = async () => {
+//       try {
+//         const noticiasCollection = collection(db, "Noticia");
+//         let snapshot;
+
+//         if (rol === "reportero") {
+//           const q = query(noticiasCollection, where("autor", "==", user.email));
+//           snapshot = await getDocs(q);
+//         } else if (rol === "editor") {
+//           snapshot = await getDocs(noticiasCollection);
+//         }
+
+//         const lista = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+//         setNoticias(lista);
+
+//         // Para el filtro de reporteros
+//         const autores = [...new Set(lista.map((n) => n.autor))];
+//         setReporteros(autores);
+
+//       } catch (error) {
+//         console.error("Error al obtener noticias:", error);
 //       }
+//     };
 
-//       const lista = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-//       setNoticias(lista);
-//     } catch (error) {
-//       console.error("Error al obtener noticias:", error);
-//     }
-//   };
+//     fetchNoticias();
+//   }, [rol, user]);
 
-//   fetchNoticias();
-// }, [rol, user]);
-
-//   const handleEditar = (noticia) => {
-//     console.log("Editar noticia:", noticia);
-//     // Aquí podrías cambiar la vista en Panel para editar esta noticia
-//   };
+//   const noticiasFiltradas =
+//     rol === "editor" && filtroAutor !== "Todos"
+//       ? noticias.filter((n) => n.autor === filtroAutor)
+//       : noticias;
 
 //   return (
 //     <div>
 //       <h3>Lista de Noticias</h3>
-//       {noticias.length === 0 ? (
+
+//       {rol === "editor" && (
+//         <div style={{ marginBottom: "1rem" }}>
+//           <label>Filtrar por reportero: </label>
+//           <select
+//             value={filtroAutor}
+//             onChange={(e) => setFiltroAutor(e.target.value)}
+//           >
+//             <option value="Todos">Todos</option>
+//             {reporteros.map((r) => (
+//               <option key={r} value={r}>
+//                 {r}
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+//       )}
+
+//       {noticiasFiltradas.length === 0 ? (
 //         <p>No hay noticias para mostrar.</p>
 //       ) : (
-//         <ul>
-//           {noticias.map((n) => (
-//             <li key={n.id}>
-//               <strong>{n.titulo}</strong> - {n.estado} <br />
-//               <small>{n.autor}</small>
-//               <br />
-//               <button onClick={() => handleEditar(n)}>Editar</button>
-//             </li>
+//         <div className="noticias-grid">
+//           {noticiasFiltradas.map((n) => (
+//             <div className="card" key={n.id}>
+//               {n.imagenURL && <img src={n.imagenURL} className="card-img-top" alt={n.titulo} />}
+//               <div className="card-body">
+//                 <h5 className="card-title">{n.titulo}</h5>
+//                 <p className="card-text">{n.subtitulo || n.contenido}</p>
+//                 <small>Autor: {n.autor}</small>
+//                 <br />
+//                 <small>Estado: {n.estado}</small>
+//                 <br />
+//                 <button onClick={() => console.log("Editar:", n)}>Editar</button>
+//               </div>
+//             </div>
 //           ))}
-//         </ul>
+//         </div>
 //       )}
 //     </div>
 //   );
 // };
 
 // export default ListaNoticia;
-
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/credenciales";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import "./ListaNoticia.css";
 
 const ListaNoticia = ({ rol, user }) => {
   const [noticias, setNoticias] = useState([]);
@@ -75,7 +189,7 @@ const ListaNoticia = ({ rol, user }) => {
           const q = query(noticiasCollection, where("autor", "==", user.email));
           snapshot = await getDocs(q);
         } else if (rol === "editor") {
-          snapshot = await getDocs(noticiasCollection); // trae todas
+          snapshot = await getDocs(noticiasCollection);
         }
 
         const lista = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -93,18 +207,17 @@ const ListaNoticia = ({ rol, user }) => {
     fetchNoticias();
   }, [rol, user]);
 
-  // Noticias filtradas según el filtro del editor
   const noticiasFiltradas =
     rol === "editor" && filtroAutor !== "Todos"
       ? noticias.filter((n) => n.autor === filtroAutor)
       : noticias;
 
   return (
-    <div>
-      <h3>Lista de Noticias</h3>
+    <div className="lista-noticia-container">
+      <h3 className="lista-noticia-title">Lista de Noticias</h3>
 
       {rol === "editor" && (
-        <div style={{ marginBottom: "1rem" }}>
+        <div className="filtro-autor">
           <label>Filtrar por reportero: </label>
           <select
             value={filtroAutor}
@@ -121,18 +234,32 @@ const ListaNoticia = ({ rol, user }) => {
       )}
 
       {noticiasFiltradas.length === 0 ? (
-        <p>No hay noticias para mostrar.</p>
+        <p className="sin-noticias">No hay noticias para mostrar.</p>
       ) : (
-        <ul>
+        <div className="noticias-grid">
           {noticiasFiltradas.map((n) => (
-            <li key={n.id}>
-              <strong>{n.titulo}</strong> - {n.estado} <br />
-              <small>{n.autor}</small>
-              <br />
-              <button onClick={() => console.log("Editar:", n)}>Editar</button>
-            </li>
+            <div className="card" key={n.id}>
+              {n.imagenURL && (
+                <img
+                  src={n.imagenURL}
+                  className="card-img-top"
+                  alt={n.titulo}
+                />
+              )}
+              <div className="card-body">
+                <h5 className="card-title">{n.titulo}</h5>
+                <p className="card-text">{n.subtitulo || n.contenido}</p>
+                <div className="card-info">
+                  <small>Autor: {n.autor}</small>
+                  <small>Estado: {n.estado}</small>
+                </div>
+                <button className="btn-editar" onClick={() => console.log("Editar:", n)}>
+                  Editar
+                </button>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
