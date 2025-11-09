@@ -140,8 +140,8 @@ const Register = () => {
               disabled={cargando}
             >
               <option value="">Seleccione un Rol</option>
-              <option value="admin">Administrador</option>
-              <option value="user">Usuario</option>
+              <option value="editor">Editor</option>
+              <option value="reportero">Reportero</option>
             </select> 
           </div>
 
@@ -153,10 +153,10 @@ const Register = () => {
             {cargando ? "Creando cuenta..." : "Crear cuenta"}
           </button>
 
-          <p className="text-center mt-4 text-muted">
+          {/* <p className="text-center mt-4 text-muted">
             <span className="text-color">¿Ya tienes cuenta? </span>
             <Link to="/login">Iniciar sesión</Link>
-          </p>
+          </p> */}
         </form>
       </div>
     </div>
