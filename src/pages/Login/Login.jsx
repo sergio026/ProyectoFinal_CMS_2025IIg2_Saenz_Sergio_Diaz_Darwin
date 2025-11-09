@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import firebaseApp from "../../firebase/credenciales";
-
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/credenciales";
 
 const auth = getAuth(firebaseApp);
 
@@ -29,18 +27,28 @@ const Login = ({ onLogin }) => {
     }
 
     try {
-
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
+      const docRef = doc(db, "usuarios", user.uid);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.data();
 
-      console.log("Usuario autenticado:", user.uid);
-
+      // if (onLogin) {
+      //   onLogin();
+      // }
+      // navigate("/dashboard");
       if (onLogin) {
-        onLogin();
+        onLogin({ uid: user.uid, email: user.email, ...data });
       }
+      navigate("/panel");
 
-      navigate("/dashboard");
-
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      setError("Correo o contraseña incorrectos");
     } finally {
       setCargando(false);
     }
@@ -94,18 +102,14 @@ const Login = ({ onLogin }) => {
             <i className="bx bxs-lock-alt"></i>
           </div>
 
-          <button
-            type="submit"
-            className="btn-login"
-            disabled={cargando}
-          >
+          <button type="submit" className="btn-login" disabled={cargando}>
             {cargando ? "Iniciando sesión..." : "Iniciar Sesión"}
           </button>
 
-          <p className="text-center mt-4 text-muted">
+          {/* <p className="text-center mt-4 text-muted">
             <span className="text-color">¿No tienes una cuenta? </span>
             <Link to="/registrar">Crear una cuenta</Link>
-          </p>
+          </p> */}
         </form>
       </div>
     </div>

@@ -3,6 +3,7 @@
 #registrar {
     font-family: "Poppins", sans-serif;
     width: 40%;
+    margin: 0 auto;
 }
 
 
@@ -47,6 +48,18 @@
     box-shadow: inset 0 0 0 2px transparent;
     font-size: 1rem;
 }
+.registrar .form-select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: rgba(214, 224, 255, 0.85);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 0 2px transparent;
+    font-size: 1rem;
+}
+
 
 .registrar input:focus {
     background: #141414;

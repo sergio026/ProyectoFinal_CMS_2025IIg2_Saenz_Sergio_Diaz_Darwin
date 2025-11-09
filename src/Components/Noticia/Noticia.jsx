@@ -1,90 +1,98 @@
-import React, { useState } from "react";
-import "./Noticia.css";
-import { db } from "../../firebaseConfig";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
 
-const Noticia = () => {
+import "./Noticia.css";
+import { db } from "../../firebase/credenciales";
+import { collection, addDoc, serverTimestamp, updateDoc, doc } from "firebase/firestore";
+
+const Noticia = ({ user, noticiaExistente }) => {
   const [noticia, setNoticia] = useState({
     titulo: "",
     subtitulo: "",
     contenido: "",
     categoria: "",
-    imagen: null,
-    autor: "",
-    estado: "",
+    imagenURL: "",
+    autor: user?.email || "Sin Autor",
+    estado: "Edición",
   });
+
+  useEffect(() => {
+
+    if (noticiaExistente) {
+      setNoticia({ ...noticiaExistente });
+    }
+
+    if (user?.email) {
+      setNoticia((prev) => ({ ...prev, autor: user.email }));
+    }
+  }, [user, noticiaExistente]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "estado" && user?.rol === "reportero" && value === "Publicado") {
+      return;
+    }
+
     setNoticia({ ...noticia, [name]: value });
   };
 
-  // const handleImageChange = (e) => {
-  //   setNoticia({ ...noticia, imagen: e.target.files[0] });
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     let imageUrl = "";
-  //     if (noticia.imagen) {
-  //       const imageRef = ref(
-  //         storage,
-  //         `noticias/${Date.now()}_${noticia.imagen.name}`
-  //       );
-  //       await uploadBytes(imageRef, noticia.imagen);
-  //       imageUrl = await getDownloadURL(imageRef);
-  //     }
-
-  //     await addDoc(collection(db, "noticias"), {
-  //       ...noticia,
-  //       imagen: imageUrl,
-  //       fechaCreacion: serverTimestamp(),
-  //       fechaActualizacion: serverTimestamp(),
-  //     });
-
-  //     console.log(" Noticia guardada con éxito");
-  //     alert("Noticia guardada correctamente");
-
-  //     // Limpia el formulario
-  //     setNoticia({
-  //       titulo: "",
-  //       subtitulo: "",
-  //       contenido: "",
-  //       categoria: "",
-  //       imagen: null,
-  //       autor: "",
-  //       estado: "Edición",
-  //     });
-  //   } catch (error) {
-  //     console.error(" Error al guardar la noticia:", error);
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      if (noticiaExistente?.id) {
+        const docRef = doc(db, "Noticia", noticiaExistente.id);
+        await updateDoc(docRef, {
+          ...noticia,
+          fechaActualizacion: serverTimestamp(),
+        });
+      } else {
+        await addDoc(collection(db, "Noticia"), {
+          ...noticia,
+          fechaCreacion: serverTimestamp(),
+          rolCreador: user.rol, 
+        });
+      }
 
-      await addDoc(collection(db, "Noticia"), {
-        ...noticia,
-        imagen: "", 
-        fechaCreacion: serverTimestamp(),
-      });
-
-      alert("Noticia guardada (sin imagen)");
       setNoticia({
         titulo: "",
         subtitulo: "",
         contenido: "",
         categoria: "",
-        imagen: null,
-        autor: "",
+        imagenURL: "",
+        autor: user.email,
         estado: "Edición",
       });
     } catch (error) {
       console.error("Error al guardar la noticia:", error);
     }
   };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setNoticia({ ...noticia, [name]: value });
+  // };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     await addDoc(collection(db, "Noticia"), {
+  //       ...noticia, 
+  //       fechaCreacion: serverTimestamp(),
+  //     });
+  //     setNoticia({
+  //       titulo: "",
+  //       subtitulo: "",
+  //       contenido: "",
+  //       categoria: "",
+  //       imagenURL: "",
+  //       autor: "",
+  //       estado: "",
+  //     });
+  //   } catch (error) {
+  //     console.error("Error al guardar la noticia:", error);
+  //   }
+  // };
 
   return (
     <form className="noticia-form" onSubmit={handleSubmit}>
@@ -128,20 +136,28 @@ const Noticia = () => {
         <option value="Economía">Economía</option>
       </select>
 
-      {/* <input type="file" accept="image/*" onChange={handleImageChange} /> */}
+      <input
+        type="text"
+        name="imagenURL"
+        placeholder="Imagen URL"
+        value={noticia.imagenURL}
+        onChange={handleChange}
+        required
+      />
 
       <input
         type="text"
         name="autor"
         placeholder="Autor"
         value={noticia.autor}
-        onChange={handleChange}
+        // onChange={handleChange}
+        readOnly
       />
 
       <select name="estado" value={noticia.estado} onChange={handleChange}>
         <option value="Edición">Edición</option>
         <option value="Terminado">Terminado</option>
-        <option value="Publicado">Publicado</option>
+        {user?.rol !== "reportero" && <option value="Publicado">Publicado</option>}
         <option value="Desactivado">Desactivado</option>
       </select>
 

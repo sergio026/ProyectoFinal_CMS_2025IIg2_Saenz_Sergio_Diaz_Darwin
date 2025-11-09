@@ -23,34 +23,15 @@ const MenuAdmin = ({ onLogout }) => {
         
           <ul className={`admin-nav-links ${menuOpen ? "active" : ""}`}>
             <li>
-              <Link to="/panel" onClick={() => setMenuOpen(false)}>
+              <Link to="/panel"className="btn btn-outline-primary custom-btn" onClick={onLogout}>
                 🏠 Inicio
               </Link>
             </li>
             <li>
-              <Link to="/panel/noticias" onClick={() => setMenuOpen(false)}>
-                📰 Noticias
-              </Link>
-            </li>
-            <li>
-              <Link to="/panel/usuarios" onClick={() => setMenuOpen(false)}>
-                👥 Usuarios
-              </Link>
-            </li>
-            <li>
-              <Link to="/panel/config" onClick={() => setMenuOpen(false)}>
-                ⚙️ Configuración
-              </Link>
-            </li>
-            <li>
               <Link to="/login"className="btn btn-outline-primary custom-btn" onClick={onLogout}>
-                Salir
+              ✖ Salir
               </Link>
-              {/* <button className="logout-btn" onClick={onLogout}>
-                Salir
-              </button> */}
-            </li>
-            
+            </li>            
           </ul>
         </div>
     </nav>

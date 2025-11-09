@@ -1,27 +1,5 @@
 html, body, #root, .App {
-  height: 100%;
   margin: 0;
   padding: 0;
-}
-
-
-.App {
-  display: flex;
-  /* flex-direction: column; */
-  height: auto;
-  width: 100%;
-}
-
-
-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;   /* Centrado horizontal */
-  align-items: center;       /* Centrado vertical */
-  padding: 2rem;
-}
-
-body {
-  background-color: white
-  
+  box-sizing: border-box;
 }
