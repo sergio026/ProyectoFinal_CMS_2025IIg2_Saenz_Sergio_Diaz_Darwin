@@ -1,16 +1,16 @@
 
 .panel {
   font-family: "Poppins", sans-serif;
-  padding: 3rem 2rem;
   background: linear-gradient(135deg, #1e1e2f, #292942);
   color: #fff;
-  text-align: center;
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* padding: 3rem 2rem; */
+  /* text-align: center; */
+  /* width: 100%; */
+  /* height: auto; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 .panel-title {

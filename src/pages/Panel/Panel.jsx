@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ListaNoticia from "../../Components/ListaNoticia/ListaNoticia";
 import Noticia from "../../Components/Noticia/Noticia";
+import PanelGestion from "../../Components/PanelGestion/PanelGestion";
 import "./Panel.css";
 
 const Panel = () => {
-
   return (
     <div className="panel">
-      <h1 className="panel-title">Panel de Administración</h1>
+        <PanelGestion />
+      {/* <h1 className="panel-title">Panel de Administración</h1>
       <p className="panel-subtitle">
         Bienvenido, administra el contenido del sitio desde aquí 🚀
       </p>
@@ -18,7 +19,7 @@ const Panel = () => {
           <div className="card-icon">📰</div>
           <h3>Noticias</h3>
           <p>Agrega, edita o elimina las noticias que aparecen en el inicio.</p>
-          <Link to="/panel/noticias" className="card-btn">
+          <Link to="/panel/noticia" className="card-btn">
             Gestionar Noticias
           </Link>
         </div>
@@ -40,7 +41,7 @@ const Panel = () => {
             Ir a Configuración
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
