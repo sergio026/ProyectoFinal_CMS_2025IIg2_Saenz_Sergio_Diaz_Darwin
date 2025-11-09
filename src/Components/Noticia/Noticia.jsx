@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import "./Noticia.css";
 import { db } from "../../firebase/credenciales";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, updateDoc, doc } from "firebase/firestore";
 
-const Noticia = () => {
+const Noticia = ({ user, noticiaExistente }) => {
   const [noticia, setNoticia] = useState({
     titulo: "",
     subtitulo: "",
     contenido: "",
     categoria: "",
     imagenURL: "",
-    autor: "",
-    estado: "",
+    autor: user?.email || "Sin Autor",
+    estado: "Edición",
   });
+
+  useEffect(() => {
+    // Si es edición, cargar noticia existente
+    if (noticiaExistente) {
+      setNoticia({ ...noticiaExistente });
+    }
+
+    // Siempre asignar el autor con el usuario actual
+    if (user?.email) {
+      setNoticia((prev) => ({ ...prev, autor: user.email }));
+    }
+  }, [user, noticiaExistente]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "estado" && user?.rol === "reportero" && value === "Publicado") {
+      return;
+    }
+
     setNoticia({ ...noticia, [name]: value });
   };
 
@@ -23,23 +41,60 @@ const Noticia = () => {
     e.preventDefault();
 
     try {
-      await addDoc(collection(db, "Noticia"), {
-        ...noticia, 
-        fechaCreacion: serverTimestamp(),
-      });
+      if (noticiaExistente?.id) {
+        const docRef = doc(db, "Noticia", noticiaExistente.id);
+        await updateDoc(docRef, {
+          ...noticia,
+          fechaActualizacion: serverTimestamp(),
+        });
+      } else {
+        await addDoc(collection(db, "Noticia"), {
+          ...noticia,
+          fechaCreacion: serverTimestamp(),
+          rolCreador: user.rol, 
+        });
+      }
+
+      // Limpiar formulario después de guardar
       setNoticia({
         titulo: "",
         subtitulo: "",
         contenido: "",
         categoria: "",
         imagenURL: "",
-        autor: "",
-        estado: "",
+        autor: user.email,
+        estado: "Edición",
       });
     } catch (error) {
       console.error("Error al guardar la noticia:", error);
     }
   };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setNoticia({ ...noticia, [name]: value });
+  // };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     await addDoc(collection(db, "Noticia"), {
+  //       ...noticia, 
+  //       fechaCreacion: serverTimestamp(),
+  //     });
+  //     setNoticia({
+  //       titulo: "",
+  //       subtitulo: "",
+  //       contenido: "",
+  //       categoria: "",
+  //       imagenURL: "",
+  //       autor: "",
+  //       estado: "",
+  //     });
+  //   } catch (error) {
+  //     console.error("Error al guardar la noticia:", error);
+  //   }
+  // };
 
   return (
     <form className="noticia-form" onSubmit={handleSubmit}>
@@ -97,13 +152,14 @@ const Noticia = () => {
         name="autor"
         placeholder="Autor"
         value={noticia.autor}
-        onChange={handleChange}
+        // onChange={handleChange}
+        readOnly
       />
 
       <select name="estado" value={noticia.estado} onChange={handleChange}>
         <option value="Edición">Edición</option>
         <option value="Terminado">Terminado</option>
-        <option value="Publicado">Publicado</option>
+        {user?.rol !== "reportero" && <option value="Publicado">Publicado</option>}
         <option value="Desactivado">Desactivado</option>
       </select>
 

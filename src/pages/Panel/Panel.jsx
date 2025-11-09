@@ -13,9 +13,9 @@ const Panel = ({ user }) => {
   const renderVista = () => {
     switch (vista) {
       case "crear":
-        return <Noticia />;
+        return <Noticia user={user}/>;
       case "lista":
-        return <ListaNoticia rol={usuario?.rol} />;
+        return <ListaNoticia rol={user?.rol} user={user} />;
       case "seccion":
         return <p style={{ color: "white" }}>Opciones avanzadas próximamente...</p>;
       case "registro":
