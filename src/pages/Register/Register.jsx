@@ -9,11 +9,34 @@ const Register = () => {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rol, setRol] = useState("");
+
+  const [isRegistrador, setIsRegistrador] = useState(false);
+
+  async function registrarUsuario(email, password, rol) {
+    const infoUsuario = await createUserWithEmailAndPassword(
+      auth, email, password, rol
+    ).then((usuariofirebase) => {
+      return usuariofirebase;
+    });
+
+    console.log(infoUsuario);
+  }
+
+
   const handleRegister = (e) => {
     e.preventDefault();
 
     // Aquí va tu lógica para registrar (guardar datos, API, etc.)
     console.log("Usuario registrado:", user, pass);
+
+    const email = e.target.elements.email.value;
+    const password = e.target.elements.password.value;
+    const rol = e.target.elements.rol.value;
+
+
 
     navigate("/");
   };
@@ -52,23 +75,23 @@ const Register = () => {
             <i className="bx bxs-lock-alt"></i>
           </div>
           <div className="mb-3">
-            <label htmlFor="select" className="form-label">Rol</label>
-            <select className="form-select" id="select">
+            <label htmlFor="rol" className="form-label">Rol</label>
+            <select className="form-select" id="rol">
               <option value="">Seleccione un Rol</option>
               <option value="admin">Administrador</option>
               <option value="user">Usuario</option>
-            </select>
+            </select> 
           </div>
 
           <button type="submit" className="btn-login">
             Crear cuenta
           </button>
-
           <p className="text-center mt-4 text-muted">
             <span className="text-color">Ya tienes cuenta? </span>
             <Link to="/login" className="">Iniciar sesión</Link>
           </p>
         </form>
+        
       </div>
     </div>
   );

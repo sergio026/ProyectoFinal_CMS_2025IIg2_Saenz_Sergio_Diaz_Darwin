@@ -1,28 +1,3 @@
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Login from "./pages/Login/Login";
-// import Register from "./pages/Register/Register";
-// import Menu from "./Components/NavBar/NavBar";
-// import "./index.css";
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <div className="App">
-//         <Menu />
-//         <main>
-//           <Routes>
-//             <Route path="/login" element={<Login />} />
-//             <Route path="/registrar" element={<Register />} />
-//           </Routes>
-//         </main>
-//       </div>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
-
 
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -34,13 +9,25 @@ import Register from "./pages/Register/Register";
 import Dashboard from "./pages/Panel/Panel";
 import Home from "./Components/Header/Header";
 import "./index.css";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import firebaseApp from "./firebase/credenciales";
+const auth = getAuth(firebaseApp);
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+
 
   const handleLogin = () => setIsLoggedIn(true);
   const handleLogout = () => setIsLoggedIn(false);
-
+  
+  onAuthStateChanged(auth, (usuariofirebase) => {
+    if (usuariofirebase) {
+      setUser(usuariofirebase);
+    } else {
+      setUser(null);
+    }
+  });         
   return (
     <>
       {isLoggedIn ? <AdminNavBar onLogout={handleLogout} /> : <NavBar />}
@@ -48,6 +35,8 @@ function App() {
       <main className="App">
         <Routes>
           <Route path="/header" element={<Home />} />
+
+
           <Route
             path="/login"
             element={
