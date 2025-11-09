@@ -43,10 +43,14 @@ const MenuAdmin = ({ onLogout }) => {
               </Link>
             </li>
             <li>
-              <button className="logout-btn" onClick={onLogout}>
-                🚪 Salir
-              </button>
+              <Link to="/login"className="btn btn-outline-primary custom-btn" onClick={onLogout}>
+                Salir
+              </Link>
+              {/* <button className="logout-btn" onClick={onLogout}>
+                Salir
+              </button> */}
             </li>
+            
           </ul>
         </div>
     </nav>
