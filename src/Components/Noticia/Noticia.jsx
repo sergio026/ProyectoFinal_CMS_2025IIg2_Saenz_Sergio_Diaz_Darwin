@@ -67,32 +67,6 @@ const Noticia = ({ user, noticiaExistente }) => {
       console.error("Error al guardar la noticia:", error);
     }
   };
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setNoticia({ ...noticia, [name]: value });
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     await addDoc(collection(db, "Noticia"), {
-  //       ...noticia, 
-  //       fechaCreacion: serverTimestamp(),
-  //     });
-  //     setNoticia({
-  //       titulo: "",
-  //       subtitulo: "",
-  //       contenido: "",
-  //       categoria: "",
-  //       imagenURL: "",
-  //       autor: "",
-  //       estado: "",
-  //     });
-  //   } catch (error) {
-  //     console.error("Error al guardar la noticia:", error);
-  //   }
-  // };
 
   return (
     <form className="noticia-form" onSubmit={handleSubmit}>
