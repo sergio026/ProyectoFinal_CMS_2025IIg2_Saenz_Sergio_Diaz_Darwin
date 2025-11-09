@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Noticia.css";
+import { db } from "../../firebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-const Noticia = ({ onSave }) => {
+const Noticia = () => {
   const [noticia, setNoticia] = useState({
     titulo: "",
     subtitulo: "",
@@ -17,22 +19,71 @@ const Noticia = ({ onSave }) => {
     setNoticia({ ...noticia, [name]: value });
   };
 
-  const handleImageChange = (e) => {
-    setNoticia({ ...noticia, imagen: e.target.files[0] });
-  };
+  // const handleImageChange = (e) => {
+  //   setNoticia({ ...noticia, imagen: e.target.files[0] });
+  // };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     let imageUrl = "";
+  //     if (noticia.imagen) {
+  //       const imageRef = ref(
+  //         storage,
+  //         `noticias/${Date.now()}_${noticia.imagen.name}`
+  //       );
+  //       await uploadBytes(imageRef, noticia.imagen);
+  //       imageUrl = await getDownloadURL(imageRef);
+  //     }
+
+  //     await addDoc(collection(db, "noticias"), {
+  //       ...noticia,
+  //       imagen: imageUrl,
+  //       fechaCreacion: serverTimestamp(),
+  //       fechaActualizacion: serverTimestamp(),
+  //     });
+
+  //     console.log("✅ Noticia guardada con éxito");
+  //     alert("Noticia guardada correctamente");
+
+  //     // Limpia el formulario
+  //     setNoticia({
+  //       titulo: "",
+  //       subtitulo: "",
+  //       contenido: "",
+  //       categoria: "",
+  //       imagen: null,
+  //       autor: "",
+  //       estado: "Edición",
+  //     });
+  //   } catch (error) {
+  //     console.error("❌ Error al guardar la noticia:", error);
+  //   }
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSave(noticia); // pasa la noticia al componente padre
-    setNoticia({
-      titulo: "",
-      subtitulo: "",
-      contenido: "",
-      categoria: "",
-      imagen: null,
-      autor: "",
-      estado: "Edición",
-    });
+
+    try {
+      // 🔹 Ignorar la imagen por ahora
+      await addDoc(collection(db, "Noticia"), {
+        ...noticia,
+        imagen: "", // o puedes dejar un URL temporal
+        fechaCreacion: serverTimestamp(),
+      });
+
+      alert("✅ Noticia guardada (sin imagen)");
+      setNoticia({
+        titulo: "",
+        subtitulo: "",
+        contenido: "",
+        categoria: "",
+        imagen: null,
+        autor: "",
+        estado: "Edición",
+      });
+    } catch (error) {
+      console.error("❌ Error al guardar la noticia:", error);
+    }
   };
 
   return (
@@ -77,11 +128,7 @@ const Noticia = ({ onSave }) => {
         <option value="Economía">Economía</option>
       </select>
 
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange}
-      />
+      {/* <input type="file" accept="image/*" onChange={handleImageChange} /> */}
 
       <input
         type="text"
@@ -91,11 +138,7 @@ const Noticia = ({ onSave }) => {
         onChange={handleChange}
       />
 
-      <select
-        name="estado"
-        value={noticia.estado}
-        onChange={handleChange}
-      >
+      <select name="estado" value={noticia.estado} onChange={handleChange}>
         <option value="Edición">Edición</option>
         <option value="Terminado">Terminado</option>
         <option value="Publicado">Publicado</option>
