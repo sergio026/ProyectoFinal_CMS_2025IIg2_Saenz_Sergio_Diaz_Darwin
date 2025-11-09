@@ -11,7 +11,7 @@ const Noticia = () => {
     categoria: "",
     imagen: null,
     autor: "",
-    estado: "Edición",
+    estado: "",
   });
 
   const handleChange = (e) => {
@@ -43,7 +43,7 @@ const Noticia = () => {
   //       fechaActualizacion: serverTimestamp(),
   //     });
 
-  //     console.log("✅ Noticia guardada con éxito");
+  //     console.log(" Noticia guardada con éxito");
   //     alert("Noticia guardada correctamente");
 
   //     // Limpia el formulario
@@ -57,21 +57,21 @@ const Noticia = () => {
   //       estado: "Edición",
   //     });
   //   } catch (error) {
-  //     console.error("❌ Error al guardar la noticia:", error);
+  //     console.error(" Error al guardar la noticia:", error);
   //   }
   // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // 🔹 Ignorar la imagen por ahora
+
       await addDoc(collection(db, "Noticia"), {
         ...noticia,
-        imagen: "", // o puedes dejar un URL temporal
+        imagen: "", 
         fechaCreacion: serverTimestamp(),
       });
 
-      alert("✅ Noticia guardada (sin imagen)");
+      alert("Noticia guardada (sin imagen)");
       setNoticia({
         titulo: "",
         subtitulo: "",
@@ -82,7 +82,7 @@ const Noticia = () => {
         estado: "Edición",
       });
     } catch (error) {
-      console.error("❌ Error al guardar la noticia:", error);
+      console.error("Error al guardar la noticia:", error);
     }
   };
 
