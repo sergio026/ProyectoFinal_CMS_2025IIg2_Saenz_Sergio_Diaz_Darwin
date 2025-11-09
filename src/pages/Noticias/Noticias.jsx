@@ -12,7 +12,7 @@ const Noticias = () => {
 
   return (
     <div className="noticias-page">
-      <h2>Gestión de Noticias</h2>
+      {/* <h2>Gestión de Noticias</h2> */}
       <Noticia onSave={handleSaveNoticia} />
       <ListaNoticia noticias={noticias} />
     </div>

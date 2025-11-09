@@ -36,16 +36,7 @@ function App() {
       <main className="App">
         <Routes>
           <Route path="/header" element={<Home />} />
-          <Route
-            path="/login"
-            element={
-              isLoggedIn ? (
-                <Navigate to="/panel" />
-              ) : (
-                <Login onLogin={handleLogin} />
-              )
-            }
-          />
+          <Route path="/login"  element={  isLoggedIn ? ( <Navigate to="/panel" />) : (<Login onLogin={handleLogin} />) } />
           <Route path="/registrar" element={<Register />} />
           <Route path="/panel"  element={ isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}/>
           {/* <Route path="/panel/noticias" element={<Noticia />} /> */}
