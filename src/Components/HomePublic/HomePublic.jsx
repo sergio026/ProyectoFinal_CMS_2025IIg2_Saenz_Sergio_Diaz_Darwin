@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/credenciales";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
-// import NavbarPublic from "../../Components/NavbarPublic/NavbarPublic";
-// import FooterPublic from "../../Components/FooterPublic/FooterPublic";
 import "./HomePublic.css";
 
 const HomePublic = () => {
@@ -30,7 +28,6 @@ const HomePublic = () => {
 
   return (
     <>
-      {/* <NavbarPublic /> */}
 
       <div className="home-container">
         {secciones.map((sec) => {
@@ -69,7 +66,6 @@ const HomePublic = () => {
         })}
       </div>
 
-      {/* <FooterPublic /> */}
     </>
   );
 };
