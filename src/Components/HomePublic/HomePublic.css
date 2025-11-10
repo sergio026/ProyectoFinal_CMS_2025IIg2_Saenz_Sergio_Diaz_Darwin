@@ -49,8 +49,6 @@
   text-shadow: 1px 1px 5px black;
 }
 
-/* =========== SECCIONES =========== */
-
 .home-container {
   width: 90%;
   margin: 2rem auto;
@@ -68,14 +66,12 @@
   padding-left: 10px;
 }
 
-/* GRID */
 .noticias-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
-/* TARJETAS */
 .card-publica {
   background: #1a1a1a;
   border-radius: 14px;
@@ -91,14 +87,12 @@
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
 }
 
-/* IMAGEN CARD */
 .card-publica img {
   width: 100%;
   height: 190px;
   object-fit: cover;
 }
 
-/* CONTENIDO CARD */
 .card-content {
   padding: 1rem;
 }
