@@ -1,4 +1,4 @@
-
+// ListaNoticia.jsx
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/credenciales";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -69,23 +69,38 @@ const ListaNoticia = ({ rol, user }) => {
         <div className="noticias-grid">
           {noticiasFiltradas.map((n) => (
             <div className="card" key={n.id}>
-              {n.imagenURL && (
-                <img
-                  src={n.imagenURL}
-                  className="card-img-top"
-                  alt={n.titulo}
-                />
-              )}
-              <div className="card-body">
-                <h5 className="card-title">{n.titulo}</h5>
-                <p className="card-text">{n.subtitulo || n.contenido}</p>
-                <div className="card-info">
-                  <small>Autor: {n.autor}</small>
-                  <small>Estado: {n.estado}</small>
+              <div className="card-wrapper">
+                {n.imagenURL && (
+                  <div className="card-icon">
+                    <div className="icon-image-box">
+                      <img src={n.imagenURL} alt={n.titulo} />
+                    </div>
+                  </div>
+                )}
+                
+                <div className="card-content">
+                  <div className="card-title-wrapper">
+                    <span className="card-title">{n.titulo}</span>
+                    
+                  </div>
+                  
+                  <div className="card-category">{n.categoria || "STARTUPS"}</div>
+                  
+                  <div className="card-text">
+                    {n.subtitulo || n.contenido}
+                  </div>
+                  
+                  <div className="card-info">
+                    <small>Autor: {n.autor}</small>
+                    <small>Estado: {n.estado}</small>
+                  </div>
+                  
+                  <div className="card-actions">
+                    <button className="btn-editar" onClick={() => console.log("Editar:", n)}>
+                      Editar
+                    </button>
+                  </div>
                 </div>
-                <button className="btn-editar" onClick={() => console.log("Editar:", n)}>
-                  Editar
-                </button>
               </div>
             </div>
           ))}
