@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { db } from "../../firebase/credenciales";
 import { doc, getDoc } from "firebase/firestore";
-// import NavbarPublic from "../../Components/NavbarPublic/NavbarPublic";
-// import FooterPublic from "../../Components/FooterPublic/FooterPublic";
 import "./NoticiaDetalle.css";
 
 const NoticiaDetalle = () => {
@@ -27,7 +25,6 @@ const NoticiaDetalle = () => {
 
   return (
     <>
-      <NavbarPublic />
       <div className="noticia-detalle-container">
         <img
           src={noticia.imagenURL || "https://via.placeholder.com/800x400"}
@@ -45,7 +42,6 @@ const NoticiaDetalle = () => {
 
         <Link to="/" className="btn-volver">← Volver</Link>
       </div>
-      <FooterPublic />
     </>
   );
 };
