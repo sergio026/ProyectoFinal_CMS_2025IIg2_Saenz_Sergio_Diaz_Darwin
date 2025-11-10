@@ -2,7 +2,7 @@
 
 #login {
     font-family: "Poppins", sans-serif;
-    width: 40%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -172,7 +172,7 @@
 
 @media (min-width: 577px) and (max-width: 1024px) {
     #login {
-        width: 80%;
+        width: 100;
     }
 
     .login .card {
