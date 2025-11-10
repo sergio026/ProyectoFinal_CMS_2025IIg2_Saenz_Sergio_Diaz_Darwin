@@ -4,7 +4,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
 // import NavbarPublic from "../../Components/NavbarPublic/NavbarPublic";
 // import FooterPublic from "../../Components/FooterPublic/FooterPublic";
-// import "../HomePublic/HomePublic.css";
+import "./HomePublic.css";
 
 const HomePublic = () => {
   const [secciones, setSecciones] = useState([]);
@@ -30,7 +30,7 @@ const HomePublic = () => {
 
   return (
     <>
-      <NavbarPublic />
+      {/* <NavbarPublic /> */}
 
       <div className="home-container">
         {secciones.map((sec) => {
@@ -69,7 +69,7 @@ const HomePublic = () => {
         })}
       </div>
 
-      <FooterPublic />
+      {/* <FooterPublic /> */}
     </>
   );
 };

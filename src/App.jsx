@@ -13,7 +13,7 @@ import Register from "./pages/Register/Register";
 import Panel from "./pages/Panel/Panel";
 // import Home from "./Components/Header/Header";
 import Noticia from "./Components/Noticia/Noticia";
-import HomePublic from "./Components/HomePublic/HomePublic ";
+import HomePublic from "./Components/HomePublic/HomePublic";
 import NoticiaDetalle from "./Components/NoticiaDetalle/NoticiaDetalle";
 
 import "./index.css";
@@ -69,7 +69,7 @@ const handleLogout = async () => {
   <Route path="/" element={<HomePublic />} />
   <Route path="/noticia/:id" element={<NoticiaDetalle />} />
 
-          <Route path="/header" element={<Home />} />
+          {/* <Route path="/header" element={<Home />} /> */}
           <Route path="/login"  element={ user ? <Navigate to="/panel" /> : <Login onLogin={(userData) => setUser(userData)} />  }/>
           <Route path="/registrar" element={<Register />} />
           <Route path="/panel" element={user ? <Panel user={user} /> : <Navigate to="/login" />} />
