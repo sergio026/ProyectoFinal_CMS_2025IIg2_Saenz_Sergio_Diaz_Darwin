@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/credenciales";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
-// import NavbarPublic from "../../Components/NavbarPublic/NavbarPublic";
-// import FooterPublic from "../../Components/FooterPublic/FooterPublic";
 import "./HomePublic.css";
 
 const HomePublic = () => {
@@ -18,8 +16,11 @@ const HomePublic = () => {
           query(collection(db, "Noticia"), where("estado", "==", "Publicado"))
         );
 
-        setSecciones(seccionesSnap.docs.map((d) => ({ id: d.id, ...d.data() })));
-        setNoticias(noticiasSnap.docs.map((d) => ({ id: d.id, ...d.data() })));
+        const seccionesData = seccionesSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        const noticiasData = noticiasSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+
+        setSecciones(seccionesData);
+        setNoticias(noticiasData);
       } catch (error) {
         console.error("Error al obtener datos públicos:", error);
       }
@@ -28,10 +29,27 @@ const HomePublic = () => {
     obtenerDatos();
   }, []);
 
-  return (
-    <>
-      {/* <NavbarPublic /> */}
+  const noticiaPrincipal = noticias[0];
 
+  return (
+    <div className="home-wrapper">
+
+      {/* HERO PRINCIPAL */}
+      {noticiaPrincipal && (
+        <Link to={`/noticia/${noticiaPrincipal.id}`} className="hero-container">
+          <img
+            src={noticiaPrincipal.imagenURL}
+            alt="Hero"
+            className="hero-img"
+          />
+          <div className="hero-overlay">
+            <h1>{noticiaPrincipal.titulo}</h1>
+            <p>{noticiaPrincipal.subtitulo || noticiaPrincipal.contenido.slice(0, 120) + "..."}</p>
+          </div>
+        </Link>
+      )}
+
+      {/* CONTENIDO POR SECCIONES */}
       <div className="home-container">
         {secciones.map((sec) => {
           const noticiasDeSeccion = noticias.filter(
@@ -43,13 +61,10 @@ const HomePublic = () => {
           return (
             <section key={sec.id} className="seccion-home">
               <h2 className="seccion-title">{sec.nombre}</h2>
+
               <div className="noticias-grid">
                 {noticiasDeSeccion.map((n) => (
-                  <Link
-                    key={n.id}
-                    to={`/noticia/${n.id}`}
-                    className="card-publica"
-                  >
+                  <Link key={n.id} to={`/noticia/${n.id}`} className="card-publica">
                     <img
                       src={
                         n.imagenURL ||
@@ -69,8 +84,7 @@ const HomePublic = () => {
         })}
       </div>
 
-      {/* <FooterPublic /> */}
-    </>
+    </div>
   );
 };
 
