@@ -11,8 +11,11 @@ import AdminNavBar from "./Components/MenuAdmin/MenuAdmin";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Panel from "./pages/Panel/Panel";
-import Home from "./Components/Header/Header";
+// import Home from "./Components/Header/Header";
 import Noticia from "./Components/Noticia/Noticia";
+import HomePublic from "./Components/HomePublic/HomePublic ";
+import NoticiaDetalle from "./Components/NoticiaDetalle/NoticiaDetalle";
+
 import "./index.css";
 
 const auth = getAuth(firebaseApp);
@@ -62,12 +65,17 @@ const handleLogout = async () => {
 
       <main className="App">
         <Routes>
+            {/* Sitio público */}
+  <Route path="/" element={<HomePublic />} />
+  <Route path="/noticia/:id" element={<NoticiaDetalle />} />
+
           <Route path="/header" element={<Home />} />
           <Route path="/login"  element={ user ? <Navigate to="/panel" /> : <Login onLogin={(userData) => setUser(userData)} />  }/>
           <Route path="/registrar" element={<Register />} />
           <Route path="/panel" element={user ? <Panel user={user} /> : <Navigate to="/login" />} />
           <Route path="/panel/noticias" element={user ? <Noticia user={user} /> : <Navigate to="/login" />} />
-          <Route path="/" element={<Navigate to="/login" />} />
+          {/* Redirección temporal */}
+  <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
     </>

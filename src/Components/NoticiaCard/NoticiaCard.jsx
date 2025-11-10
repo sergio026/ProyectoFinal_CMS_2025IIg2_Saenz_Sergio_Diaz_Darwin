@@ -7,10 +7,10 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-const NoticiaCard = ({ noticia, onEditar }) => {
+const NoticiaCard = ({ noticia, onEditar, onEliminar }) => {
+
   return (
     <Card className="flex flex-col md:flex-row w-full bg-gray-800 text-white shadow-lg rounded-lg overflow-hidden mb-4">
-      {/* Imagen */}
       <CardHeader className="w-full md:w-1/3 h-48 md:h-auto overflow-hidden">
         <img
           src={noticia.imagenURL || "https://via.placeholder.com/300x200"}
@@ -19,7 +19,6 @@ const NoticiaCard = ({ noticia, onEditar }) => {
         />
       </CardHeader>
 
-      {/* Contenido */}
       <CardBody className="flex flex-col justify-between p-4 md:p-6 w-full">
         <div>
           <Typography
@@ -34,7 +33,9 @@ const NoticiaCard = ({ noticia, onEditar }) => {
           </Typography>
 
           <Typography variant="paragraph" className="text-gray-300 mb-4">
-            {noticia.subtitulo || noticia.contenido || "Resumen de la noticia..."}
+            {noticia.subtitulo ||
+              noticia.contenido ||
+              "Resumen de la noticia..."}
           </Typography>
         </div>
 
@@ -56,6 +57,7 @@ const NoticiaCard = ({ noticia, onEditar }) => {
           >
             Editar
           </Button>
+
         </div>
       </CardBody>
     </Card>

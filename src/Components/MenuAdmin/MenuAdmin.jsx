@@ -23,11 +23,6 @@ const MenuAdmin = ({ onLogout }) => {
         
           <ul className={`admin-nav-links ${menuOpen ? "active" : ""}`}>
             <li>
-              <Link to="/panel"className="btn btn-outline-primary custom-btn" onClick={onLogout}>
-                🏠 Inicio
-              </Link>
-            </li>
-            <li>
               <Link to="/login"className="btn btn-outline-primary custom-btn" onClick={onLogout}>
               ✖ Salir
               </Link>
