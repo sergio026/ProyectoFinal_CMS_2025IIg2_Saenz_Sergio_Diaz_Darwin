@@ -34,7 +34,6 @@ const HomePublic = () => {
   return (
     <div className="home-wrapper">
 
-      {/* HERO PRINCIPAL */}
       {noticiaPrincipal && (
         <Link to={`/noticia/${noticiaPrincipal.id}`} className="hero-container">
           <img
@@ -49,7 +48,6 @@ const HomePublic = () => {
         </Link>
       )}
 
-      {/* CONTENIDO POR SECCIONES */}
       <div className="home-container">
         {secciones.map((sec) => {
           const noticiasDeSeccion = noticias.filter(
